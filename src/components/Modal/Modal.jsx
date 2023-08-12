@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { ModalContainer, ModalLoader, Overlay } from './Modal.style';
-import { Loader } from 'components/Loader/Loader';
+import { ModalContainer, ModalLoader, Overlay, CloseButton } from './Modal.style'; 
 import PropTypes from 'prop-types';
 
 export class Modal extends Component {
@@ -8,8 +7,8 @@ export class Modal extends Component {
     window.addEventListener('keydown', this.handleCloseModal);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    window.removeEventListener('keydown', this.handleCloseModal);
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleCloseModal); 
   }
 
   handleCloseModal = e => {
@@ -20,20 +19,19 @@ export class Modal extends Component {
 
   render() {
     const { largeImgObj } = this.props;
-    console.log(largeImgObj.largeImageURL);
     return (
       <Overlay onClick={this.handleCloseModal}>
         <ModalContainer>
+          <CloseButton onClick={this.props.closeModal}>X</CloseButton> 
           <img
             src={
               largeImgObj.largeImageURL ||
-              'https://cid.center/wp-content/uploads/2020/11/placeholder.png'
+              'https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg'
             }
             alt={largeImgObj.tags}
           />
-          <ModalLoader format={largeImgObj.largeImageURL}>
-            <Loader />
-          </ModalLoader>
+          <ModalLoader format={largeImgObj.largeImageURL}/>
+          
         </ModalContainer>
       </Overlay>
     );

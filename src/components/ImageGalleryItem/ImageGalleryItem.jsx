@@ -3,19 +3,15 @@ import { GalleryItem, GalleryItemImg } from './ImageGalleryItem.styled';
 import PropTypes from 'prop-types';
 
 export const ImageGalleryItem = ({ img, largeImageURL, tags, showModal }) => {
-  const cutTags = tags.length > 25 ? tags.slice(0, 25) + '...' : tags;
   return (
     <GalleryItem>
       <GalleryItemImg
         src={
-          img || 'https://cid.center/wp-content/uploads/2020/11/placeholder.png'
+          img || 'https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg'
         }
         alt={tags}
         onClick={() => showModal({ largeImageURL, tags })}
       />
-      <p>
-        {cutTags}
-      </p>
     </GalleryItem>
   );
 };

@@ -34,7 +34,6 @@ export class Searchbar extends Component {
             type="text"
             autoComplete="off"
             autoFocus
-            placeholder="Search images and photos"
             value={this.state.value}
           />
         </Form>
